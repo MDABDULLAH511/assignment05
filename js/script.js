@@ -36,18 +36,12 @@ function callBtnFunction(idName, idNumber) {
         availableCoin -= 20;
         document.getElementById('available-coin').innerText = availableCoin;
         alert('📞 Calling ' + serviceName + ' ' + serviceNumber + ' ...')
-    }
+        // Call History Added
+        const time = new Date().toLocaleTimeString();
+        const callHistoryContainer = document.getElementById('call-history-container');
 
-    else {
-        alert(" 💰❌ You don't have enough coins. You need at least 20 coins to call.");
-    }
-
-    // Call History Added
-    const time = new Date().toLocaleTimeString();
-    const callHistoryContainer = document.getElementById('call-history-container');
-
-    const div = document.createElement('div')
-    div.innerHTML = `
+        const div = document.createElement('div')
+        div.innerHTML = `
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center bg-[#FAFAFA] p-4 rounded-[8px]">
             <div>
                 <h3 class="text-[18px] font-semibold text-[#111111] mb-1">${serviceName}</h3>
@@ -57,9 +51,20 @@ function callBtnFunction(idName, idNumber) {
         </div>
        `
 
-    callHistoryContainer.appendChild(div)
+        callHistoryContainer.appendChild(div)
+        document.getElementById('history-clear-btn').addEventListener('click', function (e) {
+            callHistoryContainer.innerText = " ";
+        })
+    }
+
+    else {
+        alert(" 💰❌ You don't have enough coins. You need at least 20 coins to call.");
+    }
+
 
 }
+
+
 
 // National Emergency Number
 document.getElementById('national-emergency-call-btn').addEventListener('click', function (e) {
